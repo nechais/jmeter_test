@@ -9,12 +9,12 @@
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Spike">
         <stringProp name="TestPlan.comments">spike wave of 20 users</stringProp>
-        <intProp name="ThreadGroup.num_threads">20</intProp>
-        <intProp name="ThreadGroup.ramp_time">10</intProp>
+        <intProp name="ThreadGroup.num_threads">2</intProp>
+        <intProp name="ThreadGroup.ramp_time">5</intProp>
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">2</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -28,12 +28,12 @@
             </elementProp>
             <elementProp name="email" elementType="Argument">
               <stringProp name="Argument.name">email</stringProp>
-              <stringProp name="Argument.value">poodles-07.seen@icloud.com</stringProp>
+              <stringProp name="Argument.value"></stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="pwd" elementType="Argument">
               <stringProp name="Argument.name">pwd</stringProp>
-              <stringProp name="Argument.value">QwErTy123</stringProp>
+              <stringProp name="Argument.value"></stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -601,7 +601,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Load ">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Load " enabled="false">
         <stringProp name="TestPlan.comments">load of 50 users for 30 min</stringProp>
         <intProp name="ThreadGroup.num_threads">10</intProp>
         <intProp name="ThreadGroup.ramp_time">300</intProp>
@@ -1199,7 +1199,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Stress">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Stress" enabled="false">
         <stringProp name="TestPlan.comments">strees for 1 hour</stringProp>
         <intProp name="ThreadGroup.num_threads">50</intProp>
         <intProp name="ThreadGroup.ramp_time">600</intProp>
@@ -1797,7 +1797,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Endurance">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Endurance" enabled="false">
         <stringProp name="TestPlan.comments">24hours of endurance</stringProp>
         <intProp name="ThreadGroup.num_threads">7</intProp>
         <intProp name="ThreadGroup.ramp_time">300</intProp>
@@ -2395,7 +2395,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Volume">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Volume" enabled="false">
         <stringProp name="TestPlan.comments">3 users with simultaneous activity with big volume data at Create/Update/Read</stringProp>
         <intProp name="ThreadGroup.num_threads">3</intProp>
         <intProp name="ThreadGroup.ramp_time">60</intProp>
@@ -2991,7 +2991,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Concurrency ">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Concurrency " enabled="false">
         <stringProp name="TestPlan.comments">more simultaneous requests for possible race conditions and conflicts</stringProp>
         <intProp name="ThreadGroup.num_threads">100</intProp>
         <intProp name="ThreadGroup.ramp_time">0</intProp>
@@ -3587,7 +3587,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 1">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 1" enabled="false">
         <intProp name="ThreadGroup.num_threads">20</intProp>
         <intProp name="ThreadGroup.ramp_time">120</intProp>
         <longProp name="ThreadGroup.duration">3600</longProp>
@@ -4184,7 +4184,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 2 ">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 2 " enabled="false">
         <stringProp name="TestPlan.comments">begins when the 1st stage is finished</stringProp>
         <intProp name="ThreadGroup.num_threads">50</intProp>
         <intProp name="ThreadGroup.ramp_time">300</intProp>
@@ -4783,7 +4783,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
           <hashTree/>
         </hashTree>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 3">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group - Scalability - stage 3" enabled="false">
         <stringProp name="TestPlan.comments">starts when 2nd stage is done</stringProp>
         <intProp name="ThreadGroup.num_threads">100</intProp>
         <intProp name="ThreadGroup.ramp_time">600</intProp>
