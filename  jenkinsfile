@@ -1,66 +1,88 @@
 pipeline {
-  agent any
+    agent any
 
-//   tools {
-   
-//   }
-
-//   environment {
-//     AUTH_FILE = 'src/config/test.secrets.local.ts'
-//   }
-
-  stages {
-
-    stage('Checkout') {
-      steps {
-        git credentialsId: '2b3b4506-f14b-4fe2-94db-d3f520ef1765',
-            url: 'git@github.com:nechais/jmeter_test.git',
-            branch: 'main'
-      }
+    environment {
+        CSV_FILE = 'csv_data/csv_4_jmeter.csv'
     }
-    
-    stage('Debug Git') {
-      steps {
-        sh 'git remote -v'
-      }
-    }
-    
 
-    stage('Generate secrets CSV') {
-    steps {
-        withCredentials([
-            usernamePassword(
-              credentialsId: '549baee0-00a8-4dee-b138-3509f575eac2',
-              usernameVariable: 'AUTH_EMAIL',
-              passwordVariable: 'AUTH_PASSWORD'
-            )
-        ]) {
-            sh '''
-              mkdir -p csv_data
-              cat <<EOF > csv_data/csv_4_jmeter.csv
-                    id,email_csv,pwd_csv
-                    232575939,$AUTH_EMAIL,$AUTH_PASSWORD
-                    1,john_doe,pass123
-                    2,jane_smith,secret456
-                    3,bob_test,qwerty789
-                    EOF
-            '''
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git credentialsId: '2b3b4506-f14b-4fe2-94db-d3f520ef1765',
+                    url: 'git@github.com:nechais/jmeter_test.git',
+                    branch: 'main'
+            }
+        }
+
+        stage('Debug Git') {
+            steps {
+                sh 'git remote -v'
+            }
+        }
+
+        stage('Generate secrets CSV') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: '549baee0-00a8-4dee-b138-3509f575eac2',
+                        usernameVariable: 'AUTH_EMAIL',
+                        passwordVariable: 'AUTH_PASSWORD'
+                    )
+                ]) {
+                    sh """
+                        mkdir -p csv_data
+                        cat <<EOF > $CSV_FILE
+id,email_csv,pwd_csv
+232575939,\$AUTH_EMAIL,\$AUTH_PASSWORD
+1,john_doe,pass123
+2,jane_smith,secret456
+3,bob_test,qwerty789
+EOF
+                    """
+                }
+            }
+        }
+
+        stage('🍆 Debug LOCAL SECRETS') {
+            steps {
+                sh 'ls -l csv_data'
+                // sh 'cat csv_data/csv_4_jmeter.csv'
+            }
+        }
+
+        stage('JMeter runs and reports') {
+            steps {
+                sh '''
+                    # Створюємо постійну папку для HTML report
+                    HTML_DIR="reports/html"
+                    rm -rf $HTML_DIR/*
+                    mkdir -p $HTML_DIR
+
+                    # Генеруємо JTL з CSV форматом
+                    JTL_FILE=reports/result_$(date +%s).jtl
+                    /usr/local/bin/jmeter -n \
+                        -t jmeter_test_plan.jmx \
+                        -l $JTL_FILE \
+                        -e -o $HTML_DIR \
+                        -Jjmeter.save.saveservice.output_format=csv \
+                        -Jjmeter.save.saveservice.timestamp_format=ms \
+                        -Jjmeter.save.saveservice.print_field_names=true
+                '''
+            }
+        }
+
+        stage('Publish Report') {
+            steps {
+                publishHTML(target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports/html',
+                    reportFiles: 'index.html',
+                    reportName: 'JMeter Report'
+                ])
+            }
         }
     }
-}
-
-    stage('🍆 Debug LOCAL SECRETS') {
-      steps {
-        sh 'ls -l csv_data'
-        // sh 'cat csv_data/csv_4_jmeter.csv'
-      }
-    }
-
-     stage('Jmeter runs and reports') {
-      steps {
-        sh 'jmeter -n -t jmeter_test_plan.jmx -l reports/result.jtl -e -o reports/html'
-      }
-    }
-   
-  }
 }
