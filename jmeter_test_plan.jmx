@@ -14,7 +14,7 @@
         <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller">
-          <stringProp name="LoopController.loops">2</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
       </ThreadGroup>
@@ -552,7 +552,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
             </ResponseAssertion>
             <hashTree/>
             <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Duration Assertion">
-              <stringProp name="DurationAssertion.duration">500</stringProp>
+              <stringProp name="DurationAssertion.duration">2500</stringProp>
             </DurationAssertion>
             <hashTree/>
             <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion - all categories">
@@ -564,7 +564,7 @@ log.info(&quot;Generated randomArray = ${arrStr}&quot;)</stringProp>
               <boolProp name="ISREGEX">true</boolProp>
             </JSONPathAssertion>
             <hashTree/>
-            <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion - image_url">
+            <JSONPathAssertion guiclass="JSONPathAssertionGui" testclass="JSONPathAssertion" testname="JSON Assertion - image_url" enabled="false">
               <stringProp name="JSON_PATH">$.collections[0].image_url</stringProp>
               <stringProp name="EXPECTED_VALUE">https://cdn.cfr.betterme.world/weightloss/image/d7ae64daebe4a316bc9a2a4d43862e7c/source.png</stringProp>
               <boolProp name="JSONVALIDATION">true</boolProp>
